@@ -127,7 +127,7 @@ books.forEach((book) => {
     beforeYear.push(book);
   }
 })
-console.log(beforeYear.length + 'books were written before 1900');
+console.log(beforeYear.length + ' books were written before 1900');
 
 //was there at least one book published within the last 100 years?
 const date = new Date();
