@@ -85,18 +85,74 @@ const titles = [
 ];
 
 //Array of authors and the book they wrote
-//"--- wrote --- in ---"
+// "--- wrote --- in ---"
+books.forEach((book) => {
+  console.log(`${book.authorFirst} ${book.authorLast} wrote ${book.name} in ${book.publishDate}`);
+});
 
 //Sort books from oldest to most recent
+const dates = [];
+const oldToNew = [];
+books.forEach((book) => {
+  dates.push(book.publishDate);
+  dates.sort();
+});
+
+dates.forEach((date) => {
+  books.forEach((book) => {
+    if (date === book.publishDate) {
+      oldToNew.push({ name: book.name, publishDate: book.publishDate });
+    }
+  });
+});
+console.log(oldToNew);
 
 //sort books alphabetically
+titles.forEach((title) => {
+  titles.sort();
+});
+console.log(titles);
 
 //Find who wrote War and Peace
+books.forEach((book) => {
+  if (book.name ==="War and Peace"){
+    console.log(`${book.authorFirst} ${book.authorLast} wrote ${book.name}`)
+  }
+})
 
 //how many books were written before 1900?
+const beforeYear = []
+books.forEach((book) => {
+  if (book.publishDate < 1900) {
+    beforeYear.push(book);
+  }
+})
+console.log(beforeYear.length + 'books were written before 1900');
 
 //was there at least one book published within the last 100 years?
-
+const date = new Date();
+const lastHundred = []
+books.forEach((book) => {
+  if (book.publishDate > date.getFullYear() - 100) {
+    lastHundred.push(book);
+  }
+})
+console.log(lastHundred.length + ' books were written in the last 100 years');
 //was every book published within the last 100 years?
 
+if (lastHundred.length === books.length) {
+  console.log("Every book was published in the last 100 years");
+} else {
+  console.log("Not every book was published in the last 100 years");
+}
+
 //print a list of books that "includes" the genre historical
+const historical = []
+
+books.forEach((book) => {
+  console.log(book.genre);
+  if (book.genre.includes('historical')) {
+    historical.push(book.name);
+  }
+})
+console.log(`books with genre historical: ${historical}`)
